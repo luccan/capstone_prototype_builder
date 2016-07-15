@@ -12,8 +12,10 @@ public class GenerateCsvFiles {
         if (path.Length != 0)
         {
             System.IO.Directory.CreateDirectory(path);
-            GenerateHumanCsv(path);
+            GenerateHumanFigurineCsv(path);
+            GenerateHumanLocationCsv(path);
             GenerateCFDCsv(path);
+            ExportAssetBundles.ExportResource(1, path);
         }
     }
 
@@ -25,7 +27,7 @@ public class GenerateCsvFiles {
         }
     }
 
-    static void GenerateHumanCsv(string path)
+    static void GenerateHumanFigurineCsv(string path)
     {
         List<Vector4> humancoords = new List<Vector4>();
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanFigurine"))
@@ -42,6 +44,23 @@ public class GenerateCsvFiles {
         }
 
         WriteFile(path, "humancoords.csv", csv);
+    }
+
+    static void GenerateHumanLocationCsv(string path)
+    {
+        List<Vector3> hloccoords = new List<Vector3>();
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanLocation"))
+        {
+            Vector3 pos = obj.transform.position;
+            hloccoords.Add(new Vector3(pos.x, pos.y, pos.z));
+        }
+        string csv = "";
+        foreach (Vector3 cor in hloccoords)
+        {
+            csv += string.Format("{0},{1},{2}\n", cor.x, cor.y, cor.z);
+        }
+
+        WriteFile(path, "jumplocations.csv", csv);
     }
 
     static void GenerateCFDCsv(string path)

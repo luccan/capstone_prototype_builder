@@ -8,29 +8,16 @@ using System.IO;
 public class ExportAssetBundles
 {
 
-    [MenuItem("SKYOpt/Build AssetBundle For Windows")]
-    static void ExportWindows()
-    {
-        ExportResource(0);
-    }
-
-    [MenuItem("SKYOpt/Build AssetBundle For Android")]
-    static void ExportAndroid()
-    {
-        ExportResource(1);
-    }
-
     [MenuItem("SKYOpt/Clean AssetBundle Cache")]
     static void CleanAssetBundleCache()
     {
         Caching.CleanCache();
     }
 
-    static void ExportResource(int mode) //0=windows, 1=android
+    public static void ExportResource(int mode, string path) //0=windows, 1=android
     {
         // Bring up save panel
-        string basename = Selection.activeObject ? Selection.activeObject.name : "New Resource";
-        string path = "Assets/AssetBundleFiles/";
+        //string basename = Selection.activeObject ? Selection.activeObject.name : "New Resource";
 
         if (path.Length != 0)
         {
@@ -40,7 +27,7 @@ public class ExportAssetBundles
             if (mode == 0)
             {
                 // for Windows
-                BuildPipeline.BuildAssetBundles(path + "Windows/",
+                BuildPipeline.BuildAssetBundles(path,
                     BuildAssetBundleOptions.ForceRebuildAssetBundle,
                     BuildTarget.StandaloneWindows64);
             }
@@ -48,12 +35,12 @@ public class ExportAssetBundles
             if (mode == 1)
             {
                 // for Android
-                BuildPipeline.BuildAssetBundles(path + "Android/",
+                BuildPipeline.BuildAssetBundles(path,
                     BuildAssetBundleOptions.ForceRebuildAssetBundle,
                     BuildTarget.Android);
             }
 
-            Selection.objects = selection;
+           // Selection.objects = selection;
         }
     }
 
