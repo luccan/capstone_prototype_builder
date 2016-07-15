@@ -46,6 +46,12 @@ public class CSVImports : MonoBehaviour {
     private List<string> csvheader = new List<string> {"X","Y","Vx","Vy","Vz","V","T","PMV"};
     private void updateCsv()
     {
+        if (CFD == null)
+        {
+            _csv = "";
+            _csvhead = new List<List<string>>();
+            return;
+        }
         //standardize windows and unix line endings
         string normtext = CFD.text.Replace("\r\n", "\n"); //Replace("\r", "\n")
         string[] lines = normtext.Split('\n');
