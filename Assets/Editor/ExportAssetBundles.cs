@@ -15,6 +15,14 @@ public class ExportAssetBundles
         {
             Object.DestroyImmediate(obj);
         }*/
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanFigurine"))
+        {
+            Object.DestroyImmediate(obj);
+        }
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanLocation"))
+        {
+            Object.DestroyImmediate(obj);
+        }
         if (GameObject.Find("CSVImporter") != null)
         {
             Object.DestroyImmediate(GameObject.Find("CSVImporter"));

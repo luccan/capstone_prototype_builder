@@ -3,7 +3,8 @@ using UnityEditor;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(CSVImports))]
-public class CSVImportsEditor : Editor {
+public class CSVImportsEditor : Editor
+{
 
     public override void OnInspectorGUI()
     {
@@ -11,6 +12,27 @@ public class CSVImportsEditor : Editor {
         inspector.CFD = (TextAsset)EditorGUILayout.ObjectField("CFD File", inspector.CFD, typeof(TextAsset), true);
 
         base.OnInspectorGUI();
+
+        inspector.start_row = EditorGUILayout.IntField("Start Row", inspector.start_row);
+        inspector.x_column = EditorGUILayout.IntField("X Column", inspector.x_column);
+        inspector.y_column = EditorGUILayout.IntField("Y Column", inspector.y_column);
+        inspector.Vx_column = EditorGUILayout.IntField("Vx Column", inspector.Vx_column);
+        inspector.Vy_column = EditorGUILayout.IntField("Vy Column", inspector.Vy_column);
+        inspector.Vz_column = EditorGUILayout.IntField("Vz Column", inspector.Vz_column);
+        inspector.V_column = EditorGUILayout.IntField("V Column", inspector.V_column);
+        inspector.t_column = EditorGUILayout.IntField("t Column", inspector.t_column);
+        inspector.PMV_column = EditorGUILayout.IntField("PMV Column", inspector.PMV_column);
+
+        inspector.gridsize = EditorGUILayout.FloatField("Grid Size", inspector.gridsize);
+
+        inspector.enableAdvancedFilter = EditorGUILayout.Toggle("Show Data Filtering Options", inspector.enableAdvancedFilter);
+        if (inspector.enableAdvancedFilter)
+        {
+            inspector.boundaryStart = EditorGUILayout.Vector2Field("Boundary Start", inspector.boundaryStart);
+            inspector.boundaryEnd = EditorGUILayout.Vector2Field("Boundary End", inspector.boundaryEnd);
+            inspector.maxpoints = EditorGUILayout.IntField("Max CFD Points", inspector.maxpoints);
+            inspector.maxVelocityFilter = EditorGUILayout.FloatField("Max Velocity Filter", inspector.maxVelocityFilter);
+        }
 
         if (inspector.csvhead.Count > 0)
         {
