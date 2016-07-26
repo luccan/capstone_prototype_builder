@@ -70,4 +70,11 @@ public class GenerateCsvFiles {
         WriteFile(path, "cfd.csv", target.csv);
     }
 
+    static void GenerateLayerSettingsCsv(string path)
+    {
+        LayerSettings target = GameObject.Find("Settings").GetComponent<LayerSettings>();
+
+        WriteFile(path, "layersettings.csv", target.csv);
+    }
+
 }
