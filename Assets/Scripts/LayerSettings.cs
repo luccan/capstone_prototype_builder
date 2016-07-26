@@ -21,12 +21,12 @@ public class LayerSettings : MonoBehaviour {
         get
         {
             string ret = "";
-            ret += string.Format("Material:{0}:{1}", MaterialToggling, MaterialDefaultValue);
-            ret += string.Format("Furniture:{0}:{1}", FurnitureToggling, FurnitureDefaultValue);
-            ret += string.Format("Human:{0}:{1}", HumanToggling, HumanDefaultValue);
-            ret += string.Format("FreeMovement:{0}:{1}", FreeMovementToggling, FreeMovementDefaultValue);
-            ret += string.Format("View:{0}:{1}", ViewToggling, ViewDefaultValue);
-            ret += string.Format("Noise:{0}:{1}", NoiseToggling, NoiseDefaultValue);
+            ret += string.Format("Material:{0}:{1}\n", MaterialToggling, MaterialDefaultValue);
+            ret += string.Format("Furniture:{0}:{1}\n", FurnitureToggling, FurnitureDefaultValue);
+            ret += string.Format("Human:{0}:{1}\n", HumanToggling, HumanDefaultValue);
+            ret += string.Format("FreeMovement:{0}:{1}\n", FreeMovementToggling, FreeMovementDefaultValue);
+            ret += string.Format("View:{0}:{1}\n", ViewToggling, ViewDefaultValue);
+            ret += string.Format("Noise:{0}:{1}\n", NoiseToggling, NoiseDefaultValue);
             return ret;
         }
     }

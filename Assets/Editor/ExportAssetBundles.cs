@@ -7,6 +7,17 @@ using System.IO;
 
 public class ExportAssetBundles
 {
+    [MenuItem("SKYOpt/Restore SKYOpt Defaults")]
+    static void RestoreSkyOptDefault()
+    {
+        foreach (GameObject obj in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
+        {
+            Object.DestroyImmediate(obj);
+        }
+        new GameObject("CSVImporter", new System.Type[] { typeof(CSVImports) });
+        new GameObject("Settings", new System.Type[] { typeof(LayerSettings) });
+        new GameObject("CFDOrigin");
+    }
 
     [MenuItem("SKYOpt/Clean AssetBundle Cache")]
     static void CleanAssetBundleCache()
