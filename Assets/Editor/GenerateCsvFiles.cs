@@ -70,6 +70,15 @@ public class GenerateCsvFiles {
         WriteFile(path, "cfd.csv", target.csv);
     }
 
+    static void GenerateCFDOriginCsv(string path)
+    {
+        Vector3 cor = GameObject.Find("CFDOrigin").transform.position;
+
+        string csv = string.Format("{0},{1},{2}\n", cor.x, cor.y, cor.z);
+
+        WriteFile(path, "cfdorigin.csv", csv);
+    }
+
     static void GenerateLayerSettingsCsv(string path)
     {
         LayerSettings target = GameObject.Find("Settings").GetComponent<LayerSettings>();
