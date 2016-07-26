@@ -10,12 +10,25 @@ public class ExportAssetBundles
     [MenuItem("SKYOpt/Restore SKYOpt Defaults")]
     static void RestoreSkyOptDefault()
     {
+        /* //This destroys scene camera :/
         foreach (GameObject obj in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
         {
             Object.DestroyImmediate(obj);
+        }*/
+        if (GameObject.Find("CSVImporter") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("CSVImporter"));
         }
         new GameObject("CSVImporter", new System.Type[] { typeof(CSVImports) });
+        if (GameObject.Find("Settings") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Settings"));
+        }
         new GameObject("Settings", new System.Type[] { typeof(LayerSettings) });
+        if (GameObject.Find("CFDOrigin") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("CFDOrigin"));
+        }
         new GameObject("CFDOrigin");
     }
 

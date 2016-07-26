@@ -26,6 +26,9 @@ public class CSVImports : MonoBehaviour {
     public int V_column = 5; //redundant
     public int t_column=6;
     public int PMV_column=7;
+    public float gridsize = 0.5f;
+    public Vector2 boundaryStart = new Vector2(0,0);
+    public Vector2 boundaryEnd = new Vector2(99999, 99999);
 
     private Dictionary<Vector2, double> PMVMap = null;
 
@@ -70,30 +73,64 @@ public class CSVImports : MonoBehaviour {
         {
             string line = "";
             string[] fields = lines[i].Split(',');
+            bool valid = true;
+
             foreach (int idx in colidx)
             {
                 if (fields.Length > idx) //empty string if no such field exists
                 {
-                    line += fields[idx];
-                } // else { line = ""; continue; } //omit line if line is faulty
+                    float data;
+                    valid = float.TryParse(fields[idx], out data);
+                    if (valid)
+                    {
+                        line += fields[idx];
+                    } else
+                    { //omit line if line is faulty
+                        break;
+                    }
+                } else
+                { //omit line if line is faulty
+                    valid = false;
+                    break;
+                }
                 if (idx != PMV_column) //do not add comma on last row
                     line += ",";
             }
-            if (i != lines.Length - 1) //do not add break on last line
-                result += line + "\n";
+
+            float x, y, pmv = 0.0f;
+            //check if valid
+            if (valid)
+            {
+                x = float.Parse(fields[x_column]);
+                y = float.Parse(fields[y_column]);
+                pmv = float.Parse(fields[PMV_column]);
+
+                if (x >= boundaryStart.x && x <= boundaryEnd.x &&
+                    y >= boundaryStart.y && y <= boundaryEnd.y)
+                {
+                    //valid
+                    if (result != "") //do not add break on first line
+                        result += "\n";
+                    result += line;
+                } else
+                {
+                    continue; //skip
+                }
+            } else
+            {
+                continue; //skip
+            }
 
             // populate PMVMap Dictionary
-            float x, y, pmv = 0.0f;
-            if (float.TryParse(fields[x_column], out x) &&
-                float.TryParse(fields[y_column], out y) &&
-                float.TryParse(fields[PMV_column], out pmv))
+            if (PMVMap.ContainsKey(new Vector2(x, y)))
             {
-                if (PMVMap.ContainsKey(new Vector2(x, y))) { PMVMap[new Vector2(x, y)] = pmv; }
-                else { PMVMap.Add(new Vector2(x, y), pmv); }
+                PMVMap[new Vector2(x, y)] = pmv;
+            } else {
+                PMVMap.Add(new Vector2(x, y), pmv);
             }
 
             // populate csvhead
-            if (i < start_row + 10)
+            if (_csvhead.Count < 10)
             {
                 List<string> row = new List<string>(); //for head
                 string[] elements = line.Split(',');
@@ -130,7 +167,7 @@ public class CSVImports : MonoBehaviour {
                 g = 1.0f - Mathf.Min(Mathf.Abs((float)PMVMap[xy]), 1.0f);
                 b = Mathf.Max(Mathf.Min((float)PMVMap[xy] * -1.0f, 1.0f), 0.0f);
                 light.color = new Color(r, g, b);
-                light.range = 0.2f;
+                light.range = gridsize * 2.0F;
             }
         }
     }
