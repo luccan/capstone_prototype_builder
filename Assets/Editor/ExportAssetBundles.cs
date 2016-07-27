@@ -19,7 +19,11 @@ public class ExportAssetBundles
         {
             Object.DestroyImmediate(obj);
         }
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanLocation"))
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("UserLocation"))
+        {
+            Object.DestroyImmediate(obj);
+        }
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("NoiseLocation"))
         {
             Object.DestroyImmediate(obj);
         }

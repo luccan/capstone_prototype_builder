@@ -14,10 +14,10 @@ public class GenerateCsvFiles {
             System.IO.Directory.CreateDirectory(path);
             GenerateHumanFigurineCsv(path);
             GenerateHumanLocationCsv(path);
+            GenerateNoiseLocationCsv(path);
             GenerateCFDCsv(path);
 			GenerateCFDOriginCsv(path);
 			GenerateLayerSettingsCsv(path);
-
             ExportAssetBundles.ExportResource(1, path);
         }
     }
@@ -52,7 +52,7 @@ public class GenerateCsvFiles {
     static void GenerateHumanLocationCsv(string path)
     {
         List<Vector3> hloccoords = new List<Vector3>();
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("HumanLocation"))
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("UserLocation"))
         {
             Vector3 pos = obj.transform.position;
             hloccoords.Add(new Vector3(pos.x, pos.y, pos.z));
@@ -64,6 +64,23 @@ public class GenerateCsvFiles {
         }
 
         WriteFile(path, "jumplocations.csv", csv);
+    }
+
+    static void GenerateNoiseLocationCsv(string path)
+    {
+        List<Vector3> noisecoords = new List<Vector3>();
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("NoiseLocation"))
+        {
+            Vector3 pos = obj.transform.position;
+            noisecoords.Add(new Vector3(pos.x, pos.y, pos.z));
+        }
+        string csv = "";
+        foreach (Vector3 cor in noisecoords)
+        {
+            csv += string.Format("{0},{1},{2}\n", cor.x, cor.y, cor.z);
+        }
+
+        WriteFile(path, "noisecoords.csv", csv);
     }
 
     static void GenerateCFDCsv(string path)
