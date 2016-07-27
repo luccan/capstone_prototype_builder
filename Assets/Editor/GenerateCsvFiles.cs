@@ -15,6 +15,9 @@ public class GenerateCsvFiles {
             GenerateHumanFigurineCsv(path);
             GenerateHumanLocationCsv(path);
             GenerateCFDCsv(path);
+			GenerateCFDOriginCsv(path);
+			GenerateLayerSettingsCsv(path);
+
             ExportAssetBundles.ExportResource(1, path);
         }
     }
