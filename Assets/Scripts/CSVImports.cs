@@ -188,30 +188,66 @@ public class CSVImports : MonoBehaviour
     private Vector2 _boundaryStart = new Vector2(-99999, -99999);
     public Vector2 boundaryStart
     {
+        get { return _boundaryStart;  }
+    }
+    public float boundaryStartX
+    {
         get
         {
-            return _boundaryStart;
+            return _boundaryStart.x;
         }
         set
         {
-            if (_boundaryStart == value)
+            if (_boundaryStart.x == value)
                 return;
-            _boundaryStart = value;
+            _boundaryStart.x = value;
+            updateInfoFromCFDData();
+        }
+    }
+    public float boundaryStartY
+    {
+        get
+        {
+            return _boundaryStart.y;
+        }
+        set
+        {
+            if (_boundaryStart.y == value)
+                return;
+            _boundaryStart.y = value;
             updateInfoFromCFDData();
         }
     }
     private Vector2 _boundaryEnd = new Vector2(99999, 99999);
     public Vector2 boundaryEnd
     {
+        get { return _boundaryEnd; }
+    }
+    public float boundaryEndX
+    {
         get
         {
-            return _boundaryEnd;
+            return _boundaryEnd.x;
         }
         set
         {
-            if (_boundaryEnd == value)
+            if (_boundaryEnd.x == value)
                 return;
-            _boundaryEnd = value;
+            _boundaryEnd.x = value;
+            updateInfoFromCFDData();
+        }
+    }
+    public float boundaryEndY
+    {
+        get
+        {
+            return _boundaryEnd.y;
+        }
+        set
+        {
+            if (_boundaryEnd.y == value)
+                return;
+            _boundaryEnd.y = value;
             updateInfoFromCFDData();
         }
     }

@@ -28,8 +28,13 @@ public class CSVImportsEditor : Editor
         inspector.enableAdvancedFilter = EditorGUILayout.Toggle("Show Data Filtering Options", inspector.enableAdvancedFilter);
         if (inspector.enableAdvancedFilter)
         {
-            inspector.boundaryStart = EditorGUILayout.Vector2Field("Boundary Start", inspector.boundaryStart);
-            inspector.boundaryEnd = EditorGUILayout.Vector2Field("Boundary End", inspector.boundaryEnd);
+            EditorGUILayout.LabelField("Boundary Start");
+            inspector.boundaryStartX = EditorGUILayout.DelayedFloatField("X", inspector.boundaryStartX);
+            inspector.boundaryStartY = EditorGUILayout.DelayedFloatField("Y", inspector.boundaryStartY);
+            EditorGUILayout.LabelField("Boundary End");
+            inspector.boundaryEndX = EditorGUILayout.DelayedFloatField("X", inspector.boundaryEndX);
+            inspector.boundaryEndY = EditorGUILayout.DelayedFloatField("Y", inspector.boundaryEndY);
+            EditorGUILayout.LabelField("");
             inspector.maxpoints = EditorGUILayout.DelayedIntField("Max CFD Points", inspector.maxpoints);
             inspector.maxVelocityFilter = EditorGUILayout.DelayedFloatField("Max Velocity Filter", inspector.maxVelocityFilter);
         }
