@@ -47,8 +47,18 @@ public class ExportAssetBundles
             Object.DestroyImmediate(GameObject.Find("Step 3: Edit VR Settings"));
         }
         new GameObject("Step 3: Edit VR Settings", new System.Type[] { typeof(LayerSettings) });
-       
-        
+        if (GameObject.Find("Step 4: Input Camera and Audio Locations") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Step 4: Input Camera and Audio Locations"));
+        }
+        new GameObject("Step 4: Input Camera and Audio Locations", new System.Type[] { typeof(Step4) });
+        if (GameObject.Find("Step 5: Generate SkyBundle") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Step 5: Generate SkyBundle"));
+        }
+        new GameObject("Step 5: Generate SkyBundle", new System.Type[] { typeof(Step5) });
+
+
     }
 
     [MenuItem("SKYOpt/Clean AssetBundle Cache")]
