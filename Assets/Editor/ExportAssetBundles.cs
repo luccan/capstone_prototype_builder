@@ -27,21 +27,28 @@ public class ExportAssetBundles
         {
             Object.DestroyImmediate(obj);
         }
-        if (GameObject.Find("CSVImporter") != null)
-        {
-            Object.DestroyImmediate(GameObject.Find("CSVImporter"));
-        }
-        new GameObject("CSVImporter", new System.Type[] { typeof(CSVImports) });
-        if (GameObject.Find("Settings") != null)
-        {
-            Object.DestroyImmediate(GameObject.Find("Settings"));
-        }
-        new GameObject("Settings", new System.Type[] { typeof(LayerSettings) });
         if (GameObject.Find("CFDOrigin") != null)
         {
             Object.DestroyImmediate(GameObject.Find("CFDOrigin"));
         }
         new GameObject("CFDOrigin");
+        if (GameObject.Find("Step 1: Import OBJ") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Step 1: Import OBJ"));
+        }
+        new GameObject("Step 1: Import OBJ", new System.Type[] { typeof(OBJImports) });
+        if (GameObject.Find("Step 2: Import Thermal Results CSV") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Step 2: Import Thermal Results CSV"));
+        }
+        new GameObject("Step 2: Import Thermal Results CSV", new System.Type[] { typeof(CSVImports) });
+        if (GameObject.Find("Step 3: Edit VR Settings") != null)
+        {
+            Object.DestroyImmediate(GameObject.Find("Step 3: Edit VR Settings"));
+        }
+        new GameObject("Step 3: Edit VR Settings", new System.Type[] { typeof(LayerSettings) });
+       
+        
     }
 
     [MenuItem("SKYOpt/Clean AssetBundle Cache")]
