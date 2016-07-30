@@ -68,16 +68,18 @@ public class GenerateCsvFiles {
 
     static void GenerateNoiseLocationCsv(string path)
     {
-        List<Vector3> noisecoords = new List<Vector3>();
+        List<Vector4> noisecoords = new List<Vector4>();
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("NoiseLocation"))
         {
-            Vector3 pos = obj.transform.position;
-            noisecoords.Add(new Vector3(pos.x, pos.y, pos.z));
+			int noiseType = (int) obj.GetComponent<NoiseSelect> ().option;
+            Vector4 pos = obj.transform.position;
+			noisecoords.Add(new Vector4(pos.x, pos.y, pos.z, noiseType)); // w coordinate holds the noise type
+			Debug.Log(noiseType);
         }
         string csv = "";
-        foreach (Vector3 cor in noisecoords)
+        foreach (Vector4 cor in noisecoords)
         {
-            csv += string.Format("{0},{1},{2}\n", cor.x, cor.y, cor.z);
+			csv += string.Format("{0},{1},{2},{3}\n", cor.w, cor.x, cor.y, cor.z);
         }
 
         WriteFile(path, "noisecoords.csv", csv);
@@ -85,7 +87,7 @@ public class GenerateCsvFiles {
 
     static void GenerateCFDCsv(string path)
     {
-        CSVImports target = GameObject.Find("CSVImporter").GetComponent<CSVImports>();
+		CSVImports target = GameObject.Find("Step 2: Import Thermal Results CSV").GetComponent<CSVImports>();
 
         WriteFile(path, "cfd.csv", target.csv);
     }
@@ -101,7 +103,7 @@ public class GenerateCsvFiles {
 
     static void GenerateLayerSettingsCsv(string path)
     {
-        LayerSettings target = GameObject.Find("Settings").GetComponent<LayerSettings>();
+		LayerSettings target = GameObject.Find("Step 3: Edit VR Settings").GetComponent<LayerSettings>();
 
         WriteFile(path, "layersettings.csv", target.csv);
     }
