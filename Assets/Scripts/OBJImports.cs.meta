@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 273101cbdcfa15e4abb765093560b46a
-timeCreated: 1469769932
+timeCreated: 1469939856
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - WallsOBJ: {fileID: 100002, guid: 23103a9d6892542f2aa1f95b9aa1d5c9, type: 3}
+  - WallsTexture: {fileID: 2800000, guid: 328a13ef5f59c4002bc481f0c2046542, type: 3}
+  - FurnitureOBJ: {instanceID: 0}
+  - FurnitureTexture: {instanceID: 0}
+  - ViewsOBJ: {instanceID: 0}
+  - ViewsTexture: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

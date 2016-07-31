@@ -79,7 +79,7 @@ public class GenerateCsvFiles {
         string csv = "";
         foreach (Vector4 cor in noisecoords)
         {
-			csv += string.Format("{0},{1},{2},{3}\n", cor.w, cor.x, cor.y, cor.z);
+			csv += string.Format("{0},{1},{2},{3}\n", cor.x, cor.y, cor.z, cor.w);
         }
 
         WriteFile(path, "noisecoords.csv", csv);
