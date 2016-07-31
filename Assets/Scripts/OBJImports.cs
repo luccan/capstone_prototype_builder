@@ -49,7 +49,7 @@ public class OBJImports : MonoBehaviour
         {
             Vector3 origin = new Vector3(0, 0, 0);
             GameObject views = (GameObject)Instantiate(ViewsOBJ, origin, Quaternion.identity);
-            views.name = "Views";
+            views.name = "View";
             if (ViewsTexture)
             {
                 MeshRenderer[] viewsrenders = views.GetComponentsInChildren<MeshRenderer>();
