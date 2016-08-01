@@ -30,7 +30,7 @@ public class LayerSettings : MonoBehaviour {
             ret += string.Format("View:{0}:{1}\n", ViewToggling, ViewDefaultValue);
             ret += string.Format("Noise:{0}:{1}\n", NoiseToggling, NoiseDefaultValue);
 			ret += string.Format("MovementSpeed:{0}\n", FreeMovementSpeed);
-			ret += string.Format("LightIntensity:{0}\n", LightIntensitylog);
+			ret += string.Format("LightIntensity:{0}\n", LightIntensity);
             return ret;
         }
     }
