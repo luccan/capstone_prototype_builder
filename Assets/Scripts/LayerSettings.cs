@@ -16,6 +16,7 @@ public class LayerSettings : MonoBehaviour {
     public bool NoiseToggling = true;
     public bool NoiseDefaultValue = true;
 	public float FreeMovementSpeed = 0.5f;
+	public float LightIntensity = 1f;
 
     public string csv
     {
@@ -29,6 +30,7 @@ public class LayerSettings : MonoBehaviour {
             ret += string.Format("View:{0}:{1}\n", ViewToggling, ViewDefaultValue);
             ret += string.Format("Noise:{0}:{1}\n", NoiseToggling, NoiseDefaultValue);
 			ret += string.Format("MovementSpeed:{0}\n", FreeMovementSpeed);
+			ret += string.Format("LightIntensity:{0}\n", LightIntensitylog);
             return ret;
         }
     }
