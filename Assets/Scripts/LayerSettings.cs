@@ -15,6 +15,7 @@ public class LayerSettings : MonoBehaviour {
     public bool ViewDefaultValue = true;
     public bool NoiseToggling = true;
     public bool NoiseDefaultValue = true;
+	public float FreeMovementSpeed = 0.5f;
 
     public string csv
     {
@@ -27,6 +28,7 @@ public class LayerSettings : MonoBehaviour {
             ret += string.Format("FreeMovement:{0}:{1}\n", FreeMovementToggling, FreeMovementDefaultValue);
             ret += string.Format("View:{0}:{1}\n", ViewToggling, ViewDefaultValue);
             ret += string.Format("Noise:{0}:{1}\n", NoiseToggling, NoiseDefaultValue);
+			ret += string.Format("MovementSpeed:{0}\n", FreeMovementSpeed);
             return ret;
         }
     }
