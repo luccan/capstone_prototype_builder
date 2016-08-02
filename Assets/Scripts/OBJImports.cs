@@ -17,14 +17,16 @@ public class OBJImports : MonoBehaviour
         {
             Vector3 origin = new Vector3(0, 0, 0);
             GameObject wall = (GameObject)Instantiate(WallsOBJ, origin, Quaternion.identity);
+            wall.AddComponent<MeshCollider>().sharedMesh = wall.transform.FindChild("default").GetComponent<MeshFilter>().sharedMesh;
             wall.name = "Walls";
             if (WallsTexture)
             {
-                MeshRenderer[] wallrenders = wall.GetComponentsInChildren<MeshRenderer>();
-                foreach (var r in wallrenders)
+                Material wallmat = Resources.Load("Material/WallMat", typeof(Material)) as Material;
+                wallmat.mainTexture = WallsTexture;
+                Renderer[] wallmesh = wall.GetComponentsInChildren<Renderer>();
+                foreach (var r in wallmesh)
                 {
-                    r.material.shader = Resources.Load("SKYOpt Material", typeof(Shader)) as Shader;
-                    r.material.mainTexture = WallsTexture;
+                    r.GetComponent<Renderer>().material = wallmat;
                 }
             }
         }
@@ -36,11 +38,12 @@ public class OBJImports : MonoBehaviour
             furniture.name = "Furniture";
             if (FurnitureTexture)
             {
-                MeshRenderer[] furniturerenders = furniture.GetComponentsInChildren<MeshRenderer>();
-                foreach (var r in furniturerenders)
+                Material furmat = Resources.Load("Material/FurMat", typeof(Material)) as Material;
+                furmat.mainTexture = FurnitureTexture;
+                Renderer[] furmesh = furniture.GetComponentsInChildren<Renderer>();
+                foreach (var r in furmesh)
                 {
-                    r.material.shader = Resources.Load("SKYOpt Material", typeof(Shader)) as Shader;
-                    r.material.mainTexture = FurnitureTexture;
+                    r.GetComponent<Renderer>().material = furmat;
                 }
             }
         }
@@ -52,11 +55,12 @@ public class OBJImports : MonoBehaviour
             views.name = "View";
             if (ViewsTexture)
             {
-                MeshRenderer[] viewsrenders = views.GetComponentsInChildren<MeshRenderer>();
-                foreach (var r in viewsrenders)
+                Material viewmat = Resources.Load("Material/ViewMat", typeof(Material)) as Material;
+                viewmat.mainTexture = ViewsTexture;
+                Renderer[] viewmesh = views.GetComponentsInChildren<Renderer>();
+                foreach (var r in viewmesh)
                 {
-                    r.material.shader = Resources.Load("SKYOpt Material", typeof(Shader)) as Shader;
-                    r.material.mainTexture = ViewsTexture;
+                    r.GetComponent<Renderer>().material = viewmat;
                 }
             }
         }

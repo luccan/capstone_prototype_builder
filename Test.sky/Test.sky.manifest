@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1540019485
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: renderbundle
+      Dependencies: {}
