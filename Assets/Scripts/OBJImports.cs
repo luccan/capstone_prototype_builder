@@ -46,6 +46,12 @@ public class OBJImports : MonoBehaviour
                     r.GetComponent<Renderer>().material = furmat;
                 }
             }
+            if (GameObject.Find("Walls/default"))
+            {
+                GameObject walls = Instantiate(GameObject.Find("Walls/default"));
+                walls.transform.SetParent(furniture.transform);
+                furniture.AddComponent<MeshCollider>().sharedMesh = walls.GetComponent<MeshFilter>().sharedMesh;
+            }
         }
 
         if (ViewsOBJ)
